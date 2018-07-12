@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mtm.olx.model.Eletronico;
+import com.mtm.olx.model.Tipo;
 
 @RestController
 public class EletronicoResource
@@ -24,20 +25,23 @@ public class EletronicoResource
 	{
 		this.eletronicos = new HashMap<Integer, Eletronico>();
 
-		this.eletronicos.put(1, new Eletronico("LG-G2", "", 110.55));
-		this.eletronicos.put(2, new Eletronico("Iphone 5", "", 210.55));
-		this.eletronicos.put(3, new Eletronico("Hifone 2", "", 320.55));
-		this.eletronicos.put(4, new Eletronico("Moto G3", "", 430.55));
-		this.eletronicos.put(5, new Eletronico("Jasiel lindo", "", 540.55));
-		this.eletronicos.put(6, new Eletronico("P.D.B", "", 650.55));
+		List<Tipo> tipo = new ArrayList<Tipo>();
+		
+		tipo.add(new Tipo("cc____", "sss"));
+		
+		this.eletronicos.put(1, new Eletronico("LG-G2", "", 110.55,tipo));
+		this.eletronicos.put(2, new Eletronico("Iphone 5", "", 210.55,tipo));
+		this.eletronicos.put(3, new Eletronico("Hifone 2", "", 320.55,tipo));
+		this.eletronicos.put(4, new Eletronico("Moto G3", "", 430.55,tipo));
+		this.eletronicos.put(5, new Eletronico("Jasiel lindo", "", 540.55,tipo));
+		this.eletronicos.put(6, new Eletronico("P.D.B", "", 650.55,tipo));
 
 	}
 
 	@RequestMapping(value = "/eletronicos", method = RequestMethod.GET)
 	public ResponseEntity<List<Eletronico>> listar()
 	{
-		return new ResponseEntity<List<Eletronico>>(new ArrayList<Eletronico>(this.eletronicos.values()),
-				HttpStatus.OK);
+		return new ResponseEntity<List<Eletronico>>(new ArrayList<Eletronico>(this.eletronicos.values()), HttpStatus.OK);
 
 	}
 
